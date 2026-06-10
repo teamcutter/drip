@@ -34,12 +34,7 @@ jobs:
       - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
       - run: cmake --build build
       - run: tar czf drip-${{ github.ref_name }}-linux.tar.gz -C build drip
-      - id: changelog
-        run: |
-          echo 'changelog<<EOF' >> $GITHUB_OUTPUT
-          git log $(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD --format="- %s" >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
-      - uses: softprops/action-gh-release@v2
+      - uses: ncipollo/release-action@v1
         with:
-          files: drip-*.tar.gz
-          body: ${{ steps.changelog.outputs.changelog }}
+          artifacts: "drip-*.tar.gz"
+          generateReleaseNotes: true
