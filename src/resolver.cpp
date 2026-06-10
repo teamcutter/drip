@@ -1,5 +1,3 @@
-#pragma once
-
 #include "drip/resolver.hpp"
 #include <fstream>
 #include <algorithm>

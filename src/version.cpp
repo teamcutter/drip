@@ -1,5 +1,3 @@
-#pragma once
-
 #include "drip/version.hpp"
 
 namespace drip {

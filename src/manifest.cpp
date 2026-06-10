@@ -1,5 +1,3 @@
-#pragma once
-
 #include "drip/manifest.hpp"
 #include <fstream>
 #include <sstream>

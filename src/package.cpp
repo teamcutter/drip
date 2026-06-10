@@ -1,5 +1,3 @@
-#pragma once
-
 #include "drip/package.hpp"
 
 namespace drip {

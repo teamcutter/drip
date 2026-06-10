@@ -1,5 +1,3 @@
-#pragma once
-
 #include "drip/fetcher.hpp"
 #include <cstdlib>
 #include <sstream>

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "drip/builder.hpp"
 #include <cstdlib>
 #include <array>
