@@ -1,5 +1,6 @@
 name: CI
 on: [push, pull_request]
+
 jobs:
   build:
     strategy:
@@ -17,5 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-      - run: sudo apt-get install -y clang-tidy
-      - run: run-clang-tidy -p build
+      - run: sudo apt-get update && sudo apt-get install -y clang-tidy
+      - run: run-clang-tidy -p build -quiet
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build
+      - run: tar czf drip-${{ github.ref_name }}-linux.tar.gz -C build drip
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: drip-*.tar.gz
