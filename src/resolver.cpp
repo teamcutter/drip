@@ -266,7 +266,7 @@ ResolutionResult DependencyResolver::resolve(const Package& root,
     }
 
     if (!cdcl_solve()) {
-        return ResolutionResult{.success = false, .conflicts = get_conflict_explanation()};
+        return ResolutionResult{.conflicts = get_conflict_explanation(), .success = false };
     }
 
     ResolutionResult result;
