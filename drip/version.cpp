@@ -1,4 +1,4 @@
-#include "drip/version.hpp"
+#include <drip/version.hpp>
 
 namespace drip {
 

@@ -1,9 +1,9 @@
-#include "drip/cmd/lock.hpp"
-#include "drip/constants.hpp"
-#include "drip/fetcher.hpp"
-#include "drip/utils/git_utils.hpp"
-#include "drip/manifest.hpp"
-#include "drip/resolver.hpp"
+#include <drip/cmd/lock.hpp>
+#include <drip/constants.hpp>
+#include <drip/fetcher.hpp>
+#include <drip/details/git_utils.hpp>
+#include <drip/manifest.hpp>
+#include <drip/resolver.hpp>
 #include <iostream>
 
 int cmd_lock() {

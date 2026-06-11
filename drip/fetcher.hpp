@@ -1,7 +1,7 @@
 #pragma once
 
-#include "result.hpp"
-#include "package.hpp"
+#include <drip/result.hpp>
+#include <drip/package.hpp>
 #include <filesystem>
 #include <string>
 

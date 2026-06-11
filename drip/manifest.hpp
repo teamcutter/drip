@@ -1,6 +1,6 @@
 #pragma once
 
-#include "result.hpp"
+#include <drip/result.hpp>
 #include <string>
 #include <vector>
 #include <filesystem>

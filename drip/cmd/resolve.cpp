@@ -1,5 +1,5 @@
-#include "drip/cmd/resolve.hpp"
-#include "drip/resolver.hpp"
+#include <drip/cmd/resolve.hpp>
+#include <drip/resolver.hpp>
 #include <iostream>
 
 int cmd_resolve() {
