@@ -31,7 +31,7 @@ TEST(ResultTest, StringError) {
 }
 
 TEST(ResultTest, MoveValue) {
-    Result<std::string, std::string> r(std::string("move me"));
+    Result<std::string, int> r(std::string("move me"));
     EXPECT_TRUE(r.has_value());
     auto moved = std::move(*r);
     EXPECT_EQ(moved, "move me");
