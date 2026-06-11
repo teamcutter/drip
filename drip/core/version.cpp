@@ -20,6 +20,8 @@ std::optional<Version> Version::parse(std::string_view s) {
         }
     }
 
+    if (v.components.empty()) return std::nullopt;
+
     if (pos != std::string::npos && (build_pos == std::string::npos || pos < build_pos)) {
         v.prerelease = str.substr(pos + 1, build_pos != std::string::npos ? build_pos - pos - 1 : std::string::npos);
     }
