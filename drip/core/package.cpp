@@ -1,4 +1,4 @@
-#include <drip/package.hpp>
+#include <drip/core/package.hpp>
 
 namespace drip {
 

@@ -1,4 +1,4 @@
-#include <drip/manifest.hpp>
+#include <drip/core/manifest.hpp>
 #include <fstream>
 #include <sstream>
 #include <algorithm>

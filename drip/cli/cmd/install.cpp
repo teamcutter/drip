@@ -1,11 +1,11 @@
-#include <drip/cmd/install.hpp>
-#include <drip/constants.hpp>
-#include <drip/builder.hpp>
-#include <drip/fetcher.hpp>
+#include <drip/cli/cmd/install.hpp>
+#include <drip/core/constants.hpp>
+#include <drip/core/builder.hpp>
+#include <drip/core/fetcher.hpp>
 #include <drip/details/git_utils.hpp>
 #include <drip/details/cmake_utils.hpp>
-#include <drip/manifest.hpp>
-#include <drip/resolver.hpp>
+#include <drip/core/manifest.hpp>
+#include <drip/core/resolver.hpp>
 #include <filesystem>
 #include <fstream>
 #include <iostream>

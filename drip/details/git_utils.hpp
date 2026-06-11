@@ -1,6 +1,6 @@
 #pragma once
 
-#include <drip/package.hpp>
+#include <drip/core/package.hpp>
 #include <string>
 #include <string_view>
 

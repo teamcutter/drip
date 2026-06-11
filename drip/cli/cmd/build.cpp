@@ -1,7 +1,7 @@
-#include <drip/cmd/build.hpp>
-#include <drip/constants.hpp>
-#include <drip/builder.hpp>
-#include <drip/manifest.hpp>
+#include <drip/cli/cmd/build.hpp>
+#include <drip/core/constants.hpp>
+#include <drip/core/builder.hpp>
+#include <drip/core/manifest.hpp>
 #include <cstdlib>
 #include <iostream>
 

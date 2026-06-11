@@ -5,24 +5,24 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCES
-    drip/main.cpp
-    drip/version.cpp
-    drip/package.cpp
-    drip/resolver.cpp
-    drip/fetcher.cpp
-    drip/builder.cpp
-    drip/manifest.cpp
+    drip/cli/main.cpp
+    drip/core/version.cpp
+    drip/core/package.cpp
+    drip/core/resolver.cpp
+    drip/core/fetcher.cpp
+    drip/core/builder.cpp
+    drip/core/manifest.cpp
     drip/details/git_utils.cpp
     drip/details/cmake_utils.cpp
-    drip/cmd/help.cpp
-    drip/cmd/init.cpp
-    drip/cmd/add.cpp
-    drip/cmd/fetch.cpp
-    drip/cmd/build.cpp
-    drip/cmd/run.cpp
-    drip/cmd/install.cpp
-    drip/cmd/resolve.cpp
-    drip/cmd/lock.cpp
+    drip/cli/cmd/help.cpp
+    drip/cli/cmd/init.cpp
+    drip/cli/cmd/add.cpp
+    drip/cli/cmd/fetch.cpp
+    drip/cli/cmd/build.cpp
+    drip/cli/cmd/run.cpp
+    drip/cli/cmd/install.cpp
+    drip/cli/cmd/resolve.cpp
+    drip/cli/cmd/lock.cpp
 )
 
 set(INCLUDE_DIRS

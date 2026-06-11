@@ -1,4 +1,4 @@
-#include <drip/cmd/help.hpp>
+#include <drip/cli/cmd/help.hpp>
 #include <iostream>
 
 void print_help(const char* prog) {

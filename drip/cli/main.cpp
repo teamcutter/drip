@@ -1,12 +1,12 @@
-#include <drip/cmd/help.hpp>
-#include <drip/cmd/init.hpp>
-#include <drip/cmd/add.hpp>
-#include <drip/cmd/fetch.hpp>
-#include <drip/cmd/build.hpp>
-#include <drip/cmd/run.hpp>
-#include <drip/cmd/install.hpp>
-#include <drip/cmd/resolve.hpp>
-#include <drip/cmd/lock.hpp>
+#include <drip/cli/cmd/help.hpp>
+#include <drip/cli/cmd/init.hpp>
+#include <drip/cli/cmd/add.hpp>
+#include <drip/cli/cmd/fetch.hpp>
+#include <drip/cli/cmd/build.hpp>
+#include <drip/cli/cmd/run.hpp>
+#include <drip/cli/cmd/install.hpp>
+#include <drip/cli/cmd/resolve.hpp>
+#include <drip/cli/cmd/lock.hpp>
 #include <string_view>
 
 int main(int argc, char** argv) {
