@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <drip/details/cmake_utils.hpp>
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 
