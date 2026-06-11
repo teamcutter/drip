@@ -65,10 +65,11 @@ TEST(PackageTest, PackageNameVersionConstructor) {
 }
 
 TEST(PackageTest, ResolvedPackageToTomlMinimal) {
+    auto v = Version::parse("1.0.0");
+    ASSERT_TRUE(v.has_value());
     ResolvedPackage rp;
     rp.name = "test";
-    rp.version = *Version::parse("1.0.0");
-    EXPECT_TRUE(rp.version.has_value());
+    rp.version = *v;
     auto toml = rp.to_toml();
     EXPECT_NE(toml.find("name = \"test\""), std::string::npos);
     EXPECT_NE(toml.find("version = \"1.0.0\""), std::string::npos);
@@ -76,9 +77,11 @@ TEST(PackageTest, ResolvedPackageToTomlMinimal) {
 }
 
 TEST(PackageTest, ResolvedPackageToTomlFull) {
+    auto v = Version::parse("10.2.0");
+    ASSERT_TRUE(v.has_value());
     ResolvedPackage rp;
     rp.name = "fmt";
-    rp.version = *Version::parse("10.2.0");
+    rp.version = *v;
     rp.source_url = "https://github.com/fmtlib/fmt.git";
     rp.content_hash = "abc123";
     rp.dependencies = {"cmake"};

@@ -3,8 +3,6 @@
 #include <filesystem>
 #include <fstream>
 
-using namespace drip;
-
 TEST(CMakeUtilsTest, ToLowerEmpty) {
     EXPECT_EQ(to_lower(""), "");
 }
