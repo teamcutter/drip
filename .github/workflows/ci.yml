@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build-type }}
       - run: cmake --build build
+      - run: cmake --build build --target drip-tests
+      - run: ctest --test-dir build
 
   lint:
     runs-on: ubuntu-latest
