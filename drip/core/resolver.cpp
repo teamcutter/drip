@@ -1,4 +1,4 @@
-#include "drip/resolver.hpp"
+#include <drip/core/resolver.hpp>
 #include <fstream>
 #include <algorithm>
 

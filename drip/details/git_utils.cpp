@@ -1,5 +1,5 @@
-#include "drip/utils/git_utils.hpp"
-#include "drip/constants.hpp"
+#include <drip/details/git_utils.hpp>
+#include <drip/core/constants.hpp>
 
 namespace drip {
 

@@ -1,7 +1,7 @@
-#include "drip/cmd/fetch.hpp"
-#include "drip/constants.hpp"
-#include "drip/fetcher.hpp"
-#include "drip/utils/git_utils.hpp"
+#include <drip/cli/cmd/fetch.hpp>
+#include <drip/core/constants.hpp>
+#include <drip/core/fetcher.hpp>
+#include <drip/details/git_utils.hpp>
 #include <iostream>
 
 int cmd_fetch(int argc, char** argv) {

@@ -1,4 +1,4 @@
-#include "drip/utils/cmake_utils.hpp"
+#include <drip/details/cmake_utils.hpp>
 #include <cctype>
 #include <fstream>
 #include <set>

@@ -5,28 +5,28 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCES
-    src/main.cpp
-    src/version.cpp
-    src/package.cpp
-    src/resolver.cpp
-    src/fetcher.cpp
-    src/builder.cpp
-    src/manifest.cpp
-    src/utils/git_utils.cpp
-    src/utils/cmake_utils.cpp
-    src/cmd/help.cpp
-    src/cmd/init.cpp
-    src/cmd/add.cpp
-    src/cmd/fetch.cpp
-    src/cmd/build.cpp
-    src/cmd/run.cpp
-    src/cmd/install.cpp
-    src/cmd/resolve.cpp
-    src/cmd/lock.cpp
+    drip/cli/main.cpp
+    drip/core/version.cpp
+    drip/core/package.cpp
+    drip/core/resolver.cpp
+    drip/core/fetcher.cpp
+    drip/core/builder.cpp
+    drip/core/manifest.cpp
+    drip/details/git_utils.cpp
+    drip/details/cmake_utils.cpp
+    drip/cli/cmd/help.cpp
+    drip/cli/cmd/init.cpp
+    drip/cli/cmd/add.cpp
+    drip/cli/cmd/fetch.cpp
+    drip/cli/cmd/build.cpp
+    drip/cli/cmd/run.cpp
+    drip/cli/cmd/install.cpp
+    drip/cli/cmd/resolve.cpp
+    drip/cli/cmd/lock.cpp
 )
 
 set(INCLUDE_DIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_executable(drip ${SOURCES})

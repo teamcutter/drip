@@ -1,6 +1,6 @@
 #pragma once
 
-#include "package.hpp"
+#include <drip/core/package.hpp>
 #include <vector>
 #include <unordered_map>
 #include <set>

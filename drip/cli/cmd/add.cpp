@@ -1,6 +1,6 @@
-#include "drip/cmd/add.hpp"
-#include "drip/constants.hpp"
-#include "drip/utils/git_utils.hpp"
+#include <drip/cli/cmd/add.hpp>
+#include <drip/core/constants.hpp>
+#include <drip/details/git_utils.hpp>
 #include <fstream>
 #include <iostream>
 #include <sstream>
