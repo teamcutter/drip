@@ -91,9 +91,9 @@ TEST(ResolverTest, ResolveWithDependency) {
     auto root = builder.build();
     ASSERT_TRUE(root.has_value());
 
-    std::vector<Package> dep_pkgs;
-    dep_pkgs.emplace_back("b", *v2);
-    DependencyResolver resolver(std::move(dep_pkgs));
+    std::vector<Package> pkgs;
+    pkgs.emplace_back("b", *v2);
+    DependencyResolver resolver(std::move(pkgs));
     auto result = resolver.resolve(root.value());
     EXPECT_TRUE(result.success);
     bool found_b = false;

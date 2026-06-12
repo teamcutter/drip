@@ -248,10 +248,14 @@ ResolutionResult DependencyResolver::resolve(const Package& root,
     decision_level_ = 0;
 
     size_t var_id = 0;
+    if (var_id_map_.find(root.name()) == var_id_map_.end()) {
+        var_id_map_[root.name()] = var_id++;
+    }
     for (auto& [name, pkgs] : packages_by_name_) {
         for (auto& pkg : pkgs) {
-            var_id_map_[pkg.name()] = var_id;
-            var_id++;
+            if (var_id_map_.find(pkg.name()) == var_id_map_.end()) {
+                var_id_map_[pkg.name()] = var_id++;
+            }
         }
     }
 
@@ -273,13 +277,21 @@ ResolutionResult DependencyResolver::resolve(const Package& root,
     result.success = true;
     for (const auto& [pkg_name, var] : var_id_map_) {
         if (assignments_[var].value == Assignment::Value::TRUE) {
-            for (const auto& pkg : packages_by_name_[pkg_name]) {
+            if (pkg_name == root.name()) {
                 ResolvedPackage rp;
-                rp.name = pkg.name();
-                rp.version = pkg.version();
-                rp.content_hash = pkg.content_hash();
+                rp.name = root.name();
+                rp.version = root.version();
+                rp.content_hash = root.content_hash();
                 result.selected.push_back(rp);
-                break;
+            } else {
+                for (const auto& pkg : packages_by_name_[pkg_name]) {
+                    ResolvedPackage rp;
+                    rp.name = pkg.name();
+                    rp.version = pkg.version();
+                    rp.content_hash = pkg.content_hash();
+                    result.selected.push_back(rp);
+                    break;
+                }
             }
         }
     }
