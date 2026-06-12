@@ -51,11 +51,11 @@ void parse_inline_table(std::string_view content, ManifestDependency& dep) {
 
 }
 
-Result<Manifest, std::string> parse_manifest(const std::filesystem::path& path) {
+Result<Manifest> parse_manifest(const std::filesystem::path& path) {
     std::ifstream file(path);
     if (!file.is_open()) {
-        return Result<Manifest, std::string>(
-            "Failed to open " + path.string());
+        return Result<Manifest>(
+            Error{"Failed to open " + path.string()});
     }
 
     Manifest manifest;
@@ -71,16 +71,16 @@ Result<Manifest, std::string> parse_manifest(const std::filesystem::path& path) 
         if (trimmed[0] == '[') {
             auto end_bracket = trimmed.find(']');
             if (end_bracket == std::string::npos) {
-                return Result<Manifest, std::string>(
-                    "Syntax error line " + std::to_string(line_num) + ": unmatched [");
+                return Result<Manifest>(
+                    Error{"Syntax error line " + std::to_string(line_num) + ": unmatched ["});
             }
             section = trim(trimmed.substr(1, end_bracket - 1));
             continue;
         }
 
         if (section.empty()) {
-            return Result<Manifest, std::string>(
-                "Syntax error line " + std::to_string(line_num) + ": key=value outside section");
+            return Result<Manifest>(
+                Error{"Syntax error line " + std::to_string(line_num) + ": key=value outside section"});
         }
 
         auto eq = trimmed.find('=');
@@ -102,7 +102,7 @@ Result<Manifest, std::string> parse_manifest(const std::filesystem::path& path) 
         }
     }
 
-    return Result<Manifest, std::string>(std::move(manifest));
+    return Result<Manifest>(std::move(manifest));
 }
 
 Manifest create_template_manifest(const std::string& name) {

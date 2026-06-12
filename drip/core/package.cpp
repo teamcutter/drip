@@ -22,9 +22,9 @@ std::string Package::content_hash() const { return {}; }
 
 bool Package::supports_compiler(std::string_view) const { return true; }
 
-Result<Package, std::string> Package::Builder::build() const {
+Result<Package> Package::Builder::build() const {
     if (name_.empty()) {
-        return Result<Package, std::string>(std::string("Package name is required"));
+        return Result<Package>(Error{"Package name is required"});
     }
     Package pkg;
     pkg.pimpl_->name_ = name_;
@@ -33,7 +33,7 @@ Result<Package, std::string> Package::Builder::build() const {
     pkg.pimpl_->meta_ = meta_;
     pkg.pimpl_->source_ = source_;
     pkg.pimpl_->header_only_ = header_only_;
-    return Result<Package, std::string>(std::move(pkg));
+    return Result<Package>(std::move(pkg));
 }
 
 std::string ResolvedPackage::to_toml() const {

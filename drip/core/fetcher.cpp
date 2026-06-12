@@ -62,23 +62,23 @@ std::string GitFetcher::current_commit(const std::filesystem::path& repo) const 
     return exec("git -C " + repo.string() + " rev-parse --short HEAD 2>/dev/null");
 }
 
-Result<FetchResult, std::string> GitFetcher::fetch(const GitSource& source) {
+Result<FetchResult> GitFetcher::fetch(const GitSource& source) {
     auto key = cache_key(source.url);
     auto target = cache_dir_ / key;
 
     std::error_code ec;
     std::filesystem::create_directories(cache_dir_, ec);
     if (ec) {
-        return Result<FetchResult, std::string>(
-            std::string("Failed to create cache directory: ") + ec.message());
+        return Result<FetchResult>(
+            Error{"Failed to create cache directory: " + ec.message()});
     }
 
     if (!is_cached(key)) {
         std::string clone_cmd = "git clone --depth 1 " + source.url + " " + target.string() + " 2>&1";
         auto clone_out = exec(clone_cmd);
         if (!std::filesystem::exists(target / ".git")) {
-            return Result<FetchResult, std::string>(
-                std::string("Git clone failed: ") + clone_out);
+            return Result<FetchResult>(
+                Error{"Git clone failed: " + clone_out});
         }
     }
 
@@ -87,17 +87,17 @@ Result<FetchResult, std::string> GitFetcher::fetch(const GitSource& source) {
         auto checkout_out = exec(checkout_cmd);
         auto hash = current_commit(target);
         if (hash.empty()) {
-            return Result<FetchResult, std::string>(
-                std::string("Failed to checkout revision: ") + checkout_out);
+            return Result<FetchResult>(
+                Error{"Failed to checkout revision: " + checkout_out});
         }
     }
 
     auto hash = current_commit(target);
     if (hash.empty()) {
-        return Result<FetchResult, std::string>("Failed to get commit hash after fetch");
+        return Result<FetchResult>(Error{"Failed to get commit hash after fetch"});
     }
 
-    return Result<FetchResult, std::string>(FetchResult{
+    return Result<FetchResult>(FetchResult{
         .source_path = target,
         .commit_hash = std::move(hash)
     });

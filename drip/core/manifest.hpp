@@ -19,7 +19,7 @@ struct Manifest {
     std::vector<ManifestDependency> dependencies;
 };
 
-Result<Manifest, std::string> parse_manifest(const std::filesystem::path& path);
+Result<Manifest> parse_manifest(const std::filesystem::path& path);
 Manifest create_template_manifest(const std::string& name);
 
 }

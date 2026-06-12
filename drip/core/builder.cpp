@@ -58,14 +58,14 @@ void CMakeBuilder::set_parallel_jobs(int n) {
     jobs_ = n;
 }
 
-Result<BuildResult, std::string> CMakeBuilder::build(
+Result<BuildResult> CMakeBuilder::build(
     const std::filesystem::path& source_dir,
     const std::string& package_name,
     const Version& version)
 {
     if (!cmake_available()) {
-        return Result<BuildResult, std::string>(
-            std::string("CMake is not installed. Install it with: brew install cmake"));
+        return Result<BuildResult>(
+            Error{"CMake is not installed. Install it with: brew install cmake"});
     }
 
     auto install_dir = install_root_ / (package_name + "-" + version.to_string());
@@ -75,8 +75,8 @@ Result<BuildResult, std::string> CMakeBuilder::build(
 
     std::filesystem::create_directories(install_dir, ec);
     if (ec) {
-        return Result<BuildResult, std::string>(
-            std::string("Failed to create install directory: ") + ec.message());
+        return Result<BuildResult>(
+            Error{"Failed to create install directory: " + ec.message()});
     }
 
     auto config_cmd = "cmake -S " + source_dir.string() +
@@ -85,8 +85,8 @@ Result<BuildResult, std::string> CMakeBuilder::build(
                       " -DCMAKE_BUILD_TYPE=Release 2>&1";
     auto config_out = exec(config_cmd);
     if (!std::filesystem::exists(build_dir_path / "CMakeCache.txt")) {
-        return Result<BuildResult, std::string>(
-            std::string("CMake configuration failed:\n") + config_out);
+        return Result<BuildResult>(
+            Error{"CMake configuration failed:\n" + config_out});
     }
 
     auto build_cmd = "cmake --build " + build_dir_path.string() +
@@ -108,8 +108,8 @@ Result<BuildResult, std::string> CMakeBuilder::build(
             }
         }
         if (!has_valid_build) {
-            return Result<BuildResult, std::string>(
-                std::string("CMake build failed:\n") + build_out);
+            return Result<BuildResult>(
+                Error{"CMake build failed:\n" + build_out});
         }
     }
 
@@ -128,12 +128,12 @@ Result<BuildResult, std::string> CMakeBuilder::build(
     }
 
     if (!has_installed_files) {
-        return Result<BuildResult, std::string>(
-            std::string("CMake install produced no files in ") + install_dir.string() +
-            "\nInstall output:\n" + install_out);
+        return Result<BuildResult>(
+            Error{"CMake install produced no files in " + install_dir.string() +
+                  "\nInstall output:\n" + install_out});
     }
 
-    return Result<BuildResult, std::string>(BuildResult{
+    return Result<BuildResult>(BuildResult{
         .install_path = install_dir
     });
 }

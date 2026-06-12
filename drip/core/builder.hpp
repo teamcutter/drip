@@ -16,7 +16,7 @@ public:
     CMakeBuilder();
     explicit CMakeBuilder(std::filesystem::path install_root);
 
-    Result<BuildResult, std::string> build(
+    Result<BuildResult> build(
         const std::filesystem::path& source_dir,
         const std::string& package_name,
         const Version& version);

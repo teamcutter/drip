@@ -17,7 +17,7 @@ public:
     GitFetcher();
     explicit GitFetcher(std::filesystem::path cache_dir);
 
-    Result<FetchResult, std::string> fetch(const GitSource& source);
+    Result<FetchResult> fetch(const GitSource& source);
 
     static std::filesystem::path default_cache_dir();
     void set_cache_dir(std::filesystem::path dir);
