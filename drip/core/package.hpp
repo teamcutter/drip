@@ -85,7 +85,7 @@ namespace drip {
         }
         Builder& header_only(bool yes) { header_only_ = yes; return *this; }
 
-        Result<Package, std::string> build() const;
+        Result<Package> build() const;
 
     private:
         std::string name_;
